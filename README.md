@@ -1,14 +1,14 @@
 # FeastFlow 🍽️ — Restaurant Booking & Menu Management API
 
-### 🔗 Live Links
-* **Live API Base URL:** [https://feastflow-api-pvzx.onrender.com](https://feastflow-api-pvzx.onrender.com)
-* **Interactive Swagger UI (API Docs):** [https://feastflow-api-pvzx.onrender.com/api-docs/](https://feastflow-api-pvzx.onrender.com/api-docs/)
+### 🔗 Live Project Links
+* **Live Server Link:** [https://feastflow-api-pvzx.onrender.com](https://feastflow-api-pvzx.onrender.com)
+* **Interactive API Docs (Swagger):** [https://feastflow-api-pvzx.onrender.com/api-docs/](https://feastflow-api-pvzx.onrender.com/api-docs/)
 
 ---
 
-FeastFlow is a modular, secure backend REST API designed for modern dining establishments to manage restaurant profiles, menus, and table reservations. The application acts as a bridge between dining guests looking to book tables and restaurant managers (administrators) organizing daily operations.
+Hey there! Welcome to **FeastFlow** — a secure, robust REST API that I built to handle restaurant profiles, menus, and real-time table bookings. This project was developed as part of **Task 4 for my Webthism Backend Developer Internship**. 
 
-I designed and built this backend service as part of the **Webthism Backend Intern Task 4**. The core focus was to build a secure reservation workflow that enforces business rules—such as preventing double bookings and capacity overflows—while preserving clean folder architecture and industry-standard security patterns.
+When I set out to build this, my goal wasn't just to write basic CRUD endpoints. I wanted to focus on building a real-world, bulletproof booking system. That meant solving common backend engineering challenges like timezone synchronization, protecting slot capacities under peak loads, preventing users from double-booking, and ensuring solid security headers and request sanitization.
 
 ---
 
@@ -238,12 +238,16 @@ Deploy this service to Render with a single click:
 
 ---
 
-## 🎯 Key Learnings & Conclusion
+## 🎯 Behind the Scenes & Challenges I Solved
 
-Designing FeastFlow provided several key engineering insights:
-1.  **Handling Timezones & Date Queries:** Normalizing date parameters to UTC midnight (`setUTCHours(0,0,0,0)`) was essential. It prevented timezone offsets from shifting dates across database queries, assuring reservation slots matched exactly between tests and database documents.
-2.  **Mongoose Query Hooks & Cascades:** Implementing cascading deletes at Mongoose schema-level made data cleanup reliable. Deleting a restaurant automatically clears its bookings and menus, preventing orphaned database files.
-3.  **Preventing Concurrency Issues:** Standardizing compound partial indexes helped ensure reservation restrictions were handled at the database level rather than just the application layer, ensuring the booking system remains robust under pressure.
+Building this API was a great learning experience. Here are a few interesting challenges I tackled along the way:
+
+*   **Solving the Timezone Shift Issue:** 
+    I realized that timezone shifts can easily break booking dates when queries move between the frontend, the backend, and MongoDB. To fix this, I normalized all date parameters to UTC midnight (`setUTCHours(0,0,0,0)`). This ensures booking slots match exactly regardless of the user's timezone.
+*   **Cascading Deletes (No Orphaned Data):**
+    I wanted the database to keep itself clean. I wrote schema-level pre-delete hooks in Mongoose so that if a manager deletes a restaurant, all associated menus and active bookings are automatically cleared. This prevents stale database records.
+*   **Ensuring Booking Integrity:**
+    Validating business rules (like slot capacity limits and double-booking checks) is critical. I backed up application-layer validations with unique database compound indexes to ensure data integrity even under concurrent reservation requests.
 
 ### 🔮 Future Improvements
 *   **SMS/Email Notifications:** Incorporate automated booking confirmation and cancellation alerts via Twilio or SendGrid.
