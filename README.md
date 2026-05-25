@@ -197,11 +197,38 @@ The Swagger UI is fully interactive—allowing you to authenticate using the `Au
 ---
 
 ## 🌐 Production Deployment
-The backend service is structured to deploy smoothly on platforms like **Render**, **Railway**, or **Heroku**:
-- **Live API Endpoint URL:** `[Your Deployed URL Here]`
-- **Documentation Link:** `[Your Deployed URL Here]/api-docs`
 
-*(Ensure that the config variables `MONGODB_URI`, `PORT`, and `JWT_SECRET` are declared inside your cloud provider settings).*
+The FeastFlow backend REST API is configured to deploy seamlessly on **Render** using Render Blueprints.
+
+### ⚡ Quick Deploy
+
+Deploy this service to Render with a single click:
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/AnujGupta45/Webthism-Backend-Intern-Task-4)
+
+### 📋 Setup & Deployment Steps
+
+1. **Database Setup (MongoDB Atlas):**
+   - Render does not host MongoDB natively. You will need a hosted MongoDB instance.
+   - Go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and sign up for a free account.
+   - Create a new free cluster (Shared M0) and obtain your connection string (e.g., `mongodb+srv://<username>:<password>@cluster.mongodb.net/feastflow?retryWrites=true&w=majority`).
+   - In MongoDB Atlas under **Network Access**, allow connections from anywhere (`0.0.0.0/0`) because Render's outbound IPs are dynamic.
+
+2. **Render Blueprint Deployment:**
+   - Click the **Deploy to Render** button above, or go to the Render Dashboard and choose **New > Blueprint**.
+   - Connect your GitHub repository: `https://github.com/AnujGupta45/Webthism-Backend-Intern-Task-4`.
+   - Render will parse the `render.yaml` file automatically.
+   - Input the required configuration values when prompted:
+     - `MONGODB_URI`: Paste your MongoDB Atlas connection string.
+     - `JWT_EXPIRE`: Default is `30d`.
+     - `PORT`: Default is `5000`.
+     - `NODE_ENV`: Default is `production`.
+     - *Note: `JWT_SECRET` is automatically generated with a secure random key by Render.*
+   - Click **Apply** to deploy the services.
+
+3. **Verify Deployment:**
+   - Once the deployment build succeeds, Render will display your live URL (e.g., `https://feastflow-api.onrender.com`).
+   - Access the Swagger documentation at `https://<your-render-url>/api-docs` to test endpoints live.
 
 ---
 
