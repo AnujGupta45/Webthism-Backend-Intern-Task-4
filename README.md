@@ -198,37 +198,31 @@ The Swagger UI is fully interactive—allowing you to authenticate using the `Au
 
 ## 🌐 Production Deployment
 
-The FeastFlow backend REST API is configured to deploy seamlessly on **Render** using Render Blueprints.
-
-### ⚡ Quick Deploy
-
-Deploy this service to Render with a single click:
-
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/AnujGupta45/Webthism-Backend-Intern-Task-4)
+The FeastFlow backend REST API is configured to deploy seamlessly on **Railway**.
 
 ### 📋 Setup & Deployment Steps
 
-1. **Database Setup (MongoDB Atlas):**
-   - Render does not host MongoDB natively. You will need a hosted MongoDB instance.
-   - Go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and sign up for a free account.
-   - Create a new free cluster (Shared M0) and obtain your connection string (e.g., `mongodb+srv://<username>:<password>@cluster.mongodb.net/feastflow?retryWrites=true&w=majority`).
-   - In MongoDB Atlas under **Network Access**, allow connections from anywhere (`0.0.0.0/0`) because Render's outbound IPs are dynamic.
+1. **Sign in to Railway:**
+   - Log in to [Railway](https://railway.app) using your GitHub account.
 
-2. **Render Blueprint Deployment:**
-   - Click the **Deploy to Render** button above, or go to the Render Dashboard and choose **New > Blueprint**.
-   - Connect your GitHub repository: `https://github.com/AnujGupta45/Webthism-Backend-Intern-Task-4`.
-   - Render will parse the `render.yaml` file automatically.
-   - Input the required configuration values when prompted:
-     - `MONGODB_URI`: Paste your MongoDB Atlas connection string.
-     - `JWT_EXPIRE`: Default is `30d`.
-     - `PORT`: Default is `5000`.
-     - `NODE_ENV`: Default is `production`.
-     - *Note: `JWT_SECRET` is automatically generated with a secure random key by Render.*
-   - Click **Apply** to deploy the services.
+2. **Deploy the repository:**
+   - Create a new project on Railway and select your repository: `AnujGupta45/Webthism-Backend-Intern-Task-4`.
 
-3. **Verify Deployment:**
-   - Once the deployment build succeeds, Render will display your live URL (e.g., `https://feastflow-api.onrender.com`).
-   - Access the Swagger documentation at `https://<your-render-url>/api-docs` to test endpoints live.
+3. **Provision a MongoDB Database:**
+   - Click **+ Add** or **New** in your project dashboard and select **Database > MongoDB**.
+   - Go to the **Variables** tab of the MongoDB service and copy the `MONGODB_URL`.
+
+4. **Configure Environment Variables:**
+   - Go to the **Variables** tab of your API service and add the following:
+     - `MONGODB_URI`: *Paste the MONGODB_URL you copied in step 3.*
+     - `JWT_SECRET`: *A secure random string.*
+     - `JWT_EXPIRE`: `30d`
+     - `NODE_ENV`: `production`
+     - `PORT`: `5000`
+
+5. **Generate Public Domain:**
+   - Go to the **Settings** tab of the API service, look under **Environment**, and click **Generate Domain** to get your public API URL.
+   - Verify the deployment by accessing your interactive Swagger UI at `https://<your-railway-url>/api-docs/`.
 
 ---
 
