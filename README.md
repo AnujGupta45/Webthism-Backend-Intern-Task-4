@@ -1,5 +1,11 @@
 # FeastFlow 🍽️ — Restaurant Booking & Menu Management API
 
+### 🔗 Live Links
+* **Live API Base URL:** [https://feastflow-api-pvzx.onrender.com](https://feastflow-api-pvzx.onrender.com)
+* **Interactive Swagger UI (API Docs):** [https://feastflow-api-pvzx.onrender.com/api-docs/](https://feastflow-api-pvzx.onrender.com/api-docs/)
+
+---
+
 FeastFlow is a modular, secure backend REST API designed for modern dining establishments to manage restaurant profiles, menus, and table reservations. The application acts as a bridge between dining guests looking to book tables and restaurant managers (administrators) organizing daily operations.
 
 I designed and built this backend service as part of the **Webthism Backend Intern Task 4**. The core focus was to build a secure reservation workflow that enforces business rules—such as preventing double bookings and capacity overflows—while preserving clean folder architecture and industry-standard security patterns.
@@ -227,8 +233,8 @@ Deploy this service to Render with a single click:
    - Click **Apply** to deploy the services.
 
 3. **Verify Deployment:**
-   - Once the deployment build succeeds, Render will display your live URL (e.g., `https://feastflow-api.onrender.com`).
-   - Access the Swagger documentation at `https://<your-render-url>/api-docs` to test endpoints live.
+   - The live API deployment for this repository is active at: [https://feastflow-api-pvzx.onrender.com](https://feastflow-api-pvzx.onrender.com)
+   - Access the live Swagger documentation directly at: [https://feastflow-api-pvzx.onrender.com/api-docs/](https://feastflow-api-pvzx.onrender.com/api-docs/)
 
 ---
 
